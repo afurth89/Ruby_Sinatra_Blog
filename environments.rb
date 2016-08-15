@@ -1,5 +1,6 @@
 configure :development do
- set :database, 'sqlite3:///dev.db'
+ set :database, {adapter: "sqlite3", database: "rubyblog.sqlite3"}
+ # 'sqlite3:///dev.db'
  set :show_exceptions, true
 end
 
