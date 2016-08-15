@@ -6,6 +6,7 @@ ruby "2.2.2"
 gem "sinatra"
 gem "activerecord"
 gem "sinatra-activerecord"
+gem "rake"
 gem 'sinatra-flash'
 gem 'sinatra-redirect-with-flash'
 
