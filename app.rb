@@ -1,5 +1,3 @@
-# app.rb
-
 require 'sinatra'
 require 'sinatra/activerecord'
 require './environments'
@@ -25,10 +23,10 @@ helpers do
 end
 
 get "/" do
-  @posts = Post.order("created_at DESC")
-  @title = "Welcome"
-  erb :"posts/index"
-  # "Hello World"
+  #@posts = Post.order("created_at DESC")
+  #@title = "Welcome"
+  # erb :"posts/index"
+  "Hello World"
 end
 
 
