@@ -9,6 +9,12 @@
     <li><a href="/">Home</a></li>
     <li><a href="/posts/create">New Post</a></li>
   </ul>
+  <% if flash[:notice] %>
+    <p class="alert alert-success"><%= flash[:notice] %></p>
+  <% end %>
+  <% if flash[:error] %>
+    <p class="alert alert-error"><%= flash[:error] %></p>
+  <% end %>
   <%= yield %>
 </body>
 </html>
