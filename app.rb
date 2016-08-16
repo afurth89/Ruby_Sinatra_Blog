@@ -24,3 +24,9 @@ get "/" do
   erb :"posts/index"
   # "Hello World"
 end
+
+get "/posts/:id" do
+  @post = Post.find(params[:id])
+  @title = @post.title
+  erb :"posts/view"
+end
