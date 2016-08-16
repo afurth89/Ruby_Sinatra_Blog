@@ -1,4 +1,4 @@
-<h1><%= @post.title %></h1>
-<h1><%= @post.body %></h1>
+<h1><%=h @post.title %></h1>
+<h1><%=h @post.body %></h1>
 <br>
 <a href="/posts/<%= @post.id %>/edit">Edit Post</a>

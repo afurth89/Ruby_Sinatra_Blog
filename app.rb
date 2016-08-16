@@ -22,6 +22,12 @@ helpers do
   end
 end
 
+helpers do
+  def h(text)
+    Rack::Utils.escape_html(text)
+  end
+end
+
 # get all posts
 get "/" do
   @posts = Post.order("created_at DESC")
