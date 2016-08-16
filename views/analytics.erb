@@ -1,0 +1,11 @@
+<h1>Analytics</h1>
+
+<ul>
+<% @posts.each do |post| %>
+  <li>
+    <h3><%=h post.title %></h3>
+  </li>
+<% end %>
+</ul>
+
+<p><%= @length %></p>

@@ -11,6 +11,18 @@ class Post < ActiveRecord::Base
   validates :body, presence: true
 end
 
+class Analytics
+  attr_accessor :text
+
+  def initialize(text)
+    @text = text
+  end
+
+  def find_length
+    @length = @text.length
+  end
+end
+
 
 helpers do
   def title
@@ -56,6 +68,8 @@ end
 get "/posts/:id" do
   @post = Post.find(params[:id])
   @title = @post.title
+  analytics = Analytics.new(@post.body)
+  @length = analytics.find_length
   erb :"posts/view"
 end
 
@@ -70,4 +84,11 @@ put "/posts/:id" do
   @post = Post.find(params[:id])
   @post.update(params[:post])
   redirect "posts/#{@post.id}"
+end
+
+# analytics
+get "/analytics" do
+  @posts = Post.order("created_at DESC")
+  @title = "Analytics Page"
+  erb :"analytics"
 end
