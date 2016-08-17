@@ -3,6 +3,12 @@
   <p><%=h @post.body %></p>
   <br>
   <a class="btn btn-warning" role="button" href="/posts/<%= @post.id %>/edit">Edit Post</a>
+  <br>
+  <br>
+  <form action="/posts/<%= @post.id %>" method="post">
+    <input type="hidden" name="_method" value="delete" />
+    <button type="submit" class="btn btn-danger">Delete Post</button>
+  </form>
 </div>
 
 <h3>Analytics</h3>

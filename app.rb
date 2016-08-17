@@ -147,3 +147,8 @@ put "/posts/:id" do
   redirect "posts/#{@post.id}"
 end
 
+# Delete a post
+delete "/posts/:id" do
+  Post.delete(params[:id])
+  redirect "/"
+end  
