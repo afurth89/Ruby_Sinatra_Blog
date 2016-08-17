@@ -34,8 +34,9 @@ class Analytics
   # From http://blog.mccartie.com/2013/08/19/word-count-exercise.html
   def word_usage
     prep_words_for_counting()
-    word_list = {}
-    text.split(" ").each do |word|
+    # Creates new hash, every value set to zero
+    word_list = Hash.new(0)
+    text.downcase.split(" ").each do |word|
       # Pass each word to helper func
       # Return updated word list with count for each word
       word_list = process_word_in_list(word, word_list)
@@ -61,10 +62,6 @@ private
   def process_word_in_list(word, word_list)
     word = parse_word(word)
     return word_list if word.empty?
-    # http://www.rubyinside.com/what-rubys-double-pipe-or-equals-really-does-5488.html
-    # If word_list[word] exists, do nothing
-    # If is does NOT exist, create key and set value to 0
-    word_list[word] ||= 0
     # Increment count by 1
     word_list[word] += 1
     word_list
@@ -79,8 +76,6 @@ private
   def parse_word(word)
     # Remove anything that is not a letter or number
     word.gsub!(/[^a-zA-Z0-9]/, "")
-    # ensure all chars are lowercase
-    word.downcase!
     word
   end
 
