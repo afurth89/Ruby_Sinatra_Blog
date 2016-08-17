@@ -18,9 +18,19 @@ class Analytics
     @text = text
   end
 
-  def find_length
-    @length = @text.length
+  def word_count
+    word_count = text.split(" ").length
   end
+
+  def avg_word_length
+    total_chars = 0
+    words_array = text.split(" ")
+    words_array.each do |word|
+      total_chars += word.length
+    end
+    avg_length = '%.2f' % (total_chars.to_f/words_array.length)
+  end
+
 end
 
 
@@ -69,7 +79,8 @@ get "/posts/:id" do
   @post = Post.find(params[:id])
   @title = @post.title
   analytics = Analytics.new(@post.body)
-  @length = analytics.find_length
+  @length = analytics.word_count
+  @avg_length = analytics.avg_word_length
   erb :"posts/view"
 end
 
