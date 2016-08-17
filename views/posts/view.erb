@@ -1,8 +1,10 @@
-<h1><%=h @post.title %></h1>
-<p><%=h @post.body %></p>
-<br>
-<a href="/posts/<%= @post.id %>/edit">Edit Post</a>
-<br>
+<div class="well">
+  <h1><%=h @post.title %></h1>
+  <p><%=h @post.body %></p>
+  <br>
+  <a href="/posts/<%= @post.id %>/edit">Edit Post</a>
+</div>
+
 <p>This post has <%= @length %> words</p>
 <p>This post has an average word length of <%= @avg_length %> characters</p>
 <p>This is the word list for this post</p>
