@@ -31,6 +31,28 @@ class Analytics
     avg_length = '%.2f' % (total_chars.to_f/words_array.length)
   end
 
+  # From http://blog.mccartie.com/2013/08/19/word-count-exercise.html
+  def word_usage
+    word_list = {}
+    text.split(" ").each do |word|
+      # Pass each word to helper func
+      # Return updated word list with count for each word
+      word_list = process_word_in_list(word, word_list)
+    end
+    word_list
+  end
+
+private
+  def process_word_in_list(word, word_list)
+    return word_list if word.empty?
+    # http://www.rubyinside.com/what-rubys-double-pipe-or-equals-really-does-5488.html
+    # If word_list[word] exists, do nothing
+    # If is does NOT exist, create key and set value to 0
+    word_list[word] ||= 0
+    # Increment count by 1
+    word_list[word] += 1
+    word_list
+  end
 end
 
 
@@ -81,6 +103,7 @@ get "/posts/:id" do
   analytics = Analytics.new(@post.body)
   @length = analytics.word_count
   @avg_length = analytics.avg_word_length
+  @word_list = analytics.word_usage
   erb :"posts/view"
 end
 
