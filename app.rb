@@ -44,11 +44,16 @@ class Analytics
 
   def most_popular_word
     word_list = word_usage
-    a = []
+    popular_word = {}
+    popular_word['word'] = ""
+    popular_word['count'] = 0
     word_list.each do |word, count|
-      a.push(word)
+      if count > popular_word['count']
+        popular_word['word'] = word
+        popular_word['count'] = count
+      end
     end
-    a
+    popular_word
   end
 
 private
