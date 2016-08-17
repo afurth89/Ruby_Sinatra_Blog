@@ -33,6 +33,7 @@ class Analytics
 
   # From http://blog.mccartie.com/2013/08/19/word-count-exercise.html
   def word_usage
+    prep_words_for_counting()
     word_list = {}
     text.split(" ").each do |word|
       # Pass each word to helper func
@@ -58,6 +59,7 @@ class Analytics
 
 private
   def process_word_in_list(word, word_list)
+    word = parse_word(word)
     return word_list if word.empty?
     # http://www.rubyinside.com/what-rubys-double-pipe-or-equals-really-does-5488.html
     # If word_list[word] exists, do nothing
@@ -67,6 +69,21 @@ private
     word_list[word] += 1
     word_list
   end
+
+  def prep_words_for_counting
+    # Replace all periods and commas with spaces - which will be removed later
+    text.gsub!(",", " ")
+    text.gsub!(".", " ")
+  end
+
+  def parse_word(word)
+    # Remove anything that is not a letter or number
+    word.gsub!(/[^a-zA-Z0-9]/, "")
+    # ensure all chars are lowercase
+    word.downcase!
+    word
+  end
+
 end
 
 
