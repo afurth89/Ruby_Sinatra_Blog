@@ -42,6 +42,15 @@ class Analytics
     word_list
   end
 
+  def most_popular_word
+    word_list = word_usage
+    a = []
+    word_list.each do |word, count|
+      a.push(word)
+    end
+    a
+  end
+
 private
   def process_word_in_list(word, word_list)
     return word_list if word.empty?
@@ -104,6 +113,7 @@ get "/posts/:id" do
   @length = analytics.word_count
   @avg_length = analytics.avg_word_length
   @word_list = analytics.word_usage
+  @most_popular = analytics.most_popular_word
   erb :"posts/view"
 end
 
