@@ -147,9 +147,3 @@ put "/posts/:id" do
   redirect "posts/#{@post.id}"
 end
 
-# analytics
-get "/analytics" do
-  @posts = Post.order("created_at DESC")
-  @title = "Analytics Page"
-  erb :"analytics"
-end
